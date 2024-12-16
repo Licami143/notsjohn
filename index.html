@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Fox Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: url('https://media.giphy.com/media/3og0ISMA5iGiROl4U8/giphy.gif?cid=ecf05e474wruhun3whzu0ek52cnfbfoe2ad8m0hnm0kuyada&ep=v1_gifs_search&rid=giphy.gif&ct=g') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1, .fox, button, p {
+            text-align: center;
+        }
+        .fox {
+            margin-top: 20px;
+        }
+        button {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        async function fetchRandomFoxImage() {
+            try {
+                const response = await fetch("https://randomfox.ca/floof/");
+                const data = await response.json();
+                document.getElementById("foxImage").src = data.image;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Random Fox</h1>
+    <button onclick="fetchRandomFoxImage()">Show Me a Fox</button>
+    <div class="fox">
+        <img id="foxImage" src="" alt="Random Fox Image">
+    </div>
+</body>
+</html>
